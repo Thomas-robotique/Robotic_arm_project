@@ -383,13 +383,13 @@ int lastCLK1 = HIGH;
 // Encodeur 2
 #define CLK2 2
 #define DT2 7
-int pos2 = 90;
+int pos2 = 180;
 const int min2 = 0;
 const int max2 = 180;
 int lastCLK2 = HIGH;
 
 // Encodeur 3
-#define CLK3 13
+#define CLK3 4
 #define DT3 9
 int pos3 = 90;
 const int min3 = 0;
@@ -404,7 +404,7 @@ bool pinceFermee = true;       // état de la pince
 bool objetSaisi = false;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Encodeurs
   pinMode(CLK1, INPUT_PULLUP);
@@ -441,8 +441,7 @@ void loop() {
   // Contrôle des 3 encodeurs pour les servos 
   gererEncodeur(CLK1, DT1, servo1, pos1, min1, max1, lastCLK1);
   gererEncodeur(CLK2, DT2, servo2, pos2, min2, max2, lastCLK2);
-  gererEncodeur(CLK3, DT3, servo3, pos3, min3, max3, lastCLK3);
-      Serial.print(pinceFermee);
+ // gererEncodeur(CLK3, DT3, servo3, pos3, min3, max3, lastCLK3);
 
   // Gestion de la pince avec bouton encodeur 1 
   if (digitalRead(SW1) == LOW) {   // bouton pressé (actif LOW)
@@ -511,7 +510,7 @@ void fermerPince() {
 void ouvrirPince() {
   Serial.println("Ouverture de la pince");
   pince.attach(PIN_SERVO);
-  pince.write(180); // position ouverte
+  pince.write(150); // position ouverte
   objetSaisi = false;
 }
 ```

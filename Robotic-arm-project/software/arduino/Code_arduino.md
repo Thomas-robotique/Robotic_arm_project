@@ -221,9 +221,13 @@ void setup() {
   Serial.begin(9600);
 
   // Attacher servos
-  servo2.attach(5);
-  servo3.attach(6);
-  servo1.attach(3);
+  servo2.attach(6);
+  servo3.attach(3);
+  servo1.attach(5);
+
+  servo1.write(90);
+  servo2.write(100);
+  servo3.write(90);
 
   pince.attach(PIN_SERVO);
   pince.write(180); // ouverte au départ
@@ -242,49 +246,29 @@ void setup() {
 void loop() {
 
   //  Séquence de démonstration 
+ 
+ servo1.write(80);
+ servo2.write(120);
+ servo3.write(65);
 
-  // Position de départ
-  servo1.write(85);
-  servo3.write(51);
-  delay(delai);
+ delay(delai);
+ fermerPince();
 
-  servo_bouge_lent(angle_servo2_haut,angle_servo2_bas,servo2,20);
-  delay(delai);
 
-  ouvrirPince();
-  delay(delai2);
-
-  fermerPince();
-  delay(delai);
-
- // Le bras se lève après avoir saisi l'objet
-  servo_bouge_lent(angle_servo2_bas,angle_servo2_haut,servo2,20);
-  delay(delai);
-
-  servo3.write(80);
-  delay(delai); 
-
-// Le bras pivote avec l'objet
-  servo1.write(35);
-  delay(delai);
-
-  servo3.write(51);
-  delay(delai);
-
-// Le bras se baisse avec l'objet
-  servo_bouge_lent(angle_servo2_haut,angle_servo2_bas,servo2,20);
-  delay(delai);
-// Le bras lâche l'objet
-  ouvrirPince();
-  delay(delai2);
-
-// Le bras reprend l'objet
-  fermerPince();
-  delay(delai);
-// Le bras se lève après avoir saisi l'objet
-  servo_bouge_lent(angle_servo2_bas,angle_servo2_haut,servo2,20);
-  delay(delai);
- // Le bras recommence
+servo_bouge_lent(120,160, servo2,20);
+delay(delai);
+ servo1.write(30);
+ delay(delai);
+servo_bouge_lent(160, 120, servo2,20);
+ouvrirPince();
+delay(1000);
+fermerPince();
+servo_bouge_lent(120,160, servo2,20);
+delay(delai);
+servo1.write(80);
+servo_bouge_lent(160, 120, servo2,20);
+ouvrirPince();
+delay(1000);
 
  
   
@@ -346,7 +330,7 @@ void fermerPince() {
 void ouvrirPince() {
   Serial.println("Ouverture de la pince...");
   pince.attach(PIN_SERVO);
-  pince.write(180); // ouverte
+  pince.write(170); // ouverte
   objetSaisi = false;
 }
 ```

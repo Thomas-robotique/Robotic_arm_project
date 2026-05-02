@@ -381,16 +381,16 @@ const int max1 = 180;
 int lastCLK1 = HIGH;
 
 // Encodeur 2
-#define CLK2 2
-#define DT2 7
+#define CLK2 9
+#define DT2 4
 int pos2 = 180;
 const int min2 = 0;
 const int max2 = 180;
 int lastCLK2 = HIGH;
 
 // Encodeur 3
-#define CLK3 4
-#define DT3 9
+#define CLK3 2
+#define DT3 7
 int pos3 = 90;
 const int min3 = 0;
 const int max3 = 180;
@@ -441,7 +441,7 @@ void loop() {
   // Contrôle des 3 encodeurs pour les servos 
   gererEncodeur(CLK1, DT1, servo1, pos1, min1, max1, lastCLK1);
   gererEncodeur(CLK2, DT2, servo2, pos2, min2, max2, lastCLK2);
- // gererEncodeur(CLK3, DT3, servo3, pos3, min3, max3, lastCLK3);
+ gererEncodeur(CLK3, DT3, servo3, pos3, min3, max3, lastCLK3);
 
   // Gestion de la pince avec bouton encodeur 1 
   if (digitalRead(SW1) == LOW) {   // bouton pressé (actif LOW)

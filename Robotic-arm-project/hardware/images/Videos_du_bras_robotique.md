@@ -91,3 +91,14 @@ Une séquence de démonstration a été programmée : le bras saisit un objet, l
 #### Points d’amélioration futurs :
 - Améliorer l’esthétique et la sécurité du bras  
 - Organiser et sécuriser le câblage afin d’éviter tout faux contacts ou courts-circuits  
+
+
+### - 06/06/2026 18:51, Suivi du développement, Bras robotique
+J’ai entièrement refait le système électrique du bras en concevant un PCB qui supprime les fils de connexion.
+L’objectif est de rendre le circuit plus fiable et plus robuste. 
+Vous trouverez des photos du PCB [ici] (Robotic-arm-project/hardware/images)
+
+#### Points d’amélioration futurs :
+-Réaliser une nouvelle armature en impression 3D.
+-Finaliser la trilatération afin d’obtenir les coordonnées d’un objet et automatiser sa prise.
+

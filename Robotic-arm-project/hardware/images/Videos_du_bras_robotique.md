@@ -99,6 +99,7 @@ L’objectif est de rendre le circuit plus fiable et plus robuste.
 Vous trouverez des photos du PCB [ici](..)
 
 #### Points d’amélioration futurs :
--Réaliser une nouvelle armature en impression 3D.
--Finaliser la trilatération afin d’obtenir les coordonnées d’un objet et automatiser sa prise.
+- Réaliser une nouvelle armature en impression 3D.
+- Finaliser la trilatération afin d’obtenir les coordonnées d’un objet et automatiser sa prise.
+
 

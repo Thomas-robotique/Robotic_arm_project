@@ -96,7 +96,7 @@ Une séquence de démonstration a été programmée : le bras saisit un objet, l
 ### - 06/06/2026 18:51, Suivi du développement, Bras robotique
 J’ai entièrement refait le système électrique du bras en concevant un PCB qui supprime les fils de connexion.
 L’objectif est de rendre le circuit plus fiable et plus robuste. 
-Vous trouverez des photos du PCB [ici](../hardware/images)
+Vous trouverez des photos du PCB [ici](../hardware)
 
 #### Points d’amélioration futurs :
 - Réaliser une nouvelle armature en impression 3D.

@@ -46,7 +46,7 @@ Pour une meilleure visualisation, vous retrouverez différentes vidéos de démo
 
 
 
-[Voir les vidéos du bras robotique](Robotic-arm-project/hardware/images/Videos_du_bras_robotique.md)
+[Voir les vidéos du bras robotique](Robotic-arm-project/hardware/images/Suivi_du_développement_du_bras_robotique.md)
 
 
 

@@ -12,7 +12,7 @@ Chaque vidéo illustre une amélioration technique, comme la résolution d’un 
 ---
 
 ### - 18/08/2025 9:23, Suivi du développement, Bras robotique
-- Correction du code de pilotage des servomoteurs afin de réduire le jeu mécanique ([Voir le code Arduino](../../software/arduino/Code_arduino.md))  
+- Correction du code de pilotage des servomoteurs afin de réduire le jeu mécanique ([Voir le code Arduino](../software/arduino/Code_arduino.md))  
 - Fixation du bras sur une planche en bois pour limiter les vibrations  
 - Ajout d’une nouvelle articulation destinée à soutenir la pince  
 
@@ -70,7 +70,7 @@ Chaque vidéo illustre une amélioration technique, comme la résolution d’un 
 
 - Mise en fonctionnement de la pince avec détection de la saisie d’objets (arrêt automatique pour éviter la surchauffe)  
 - Intégration d’un capteur INA219 en série avec le servomoteur pour surveiller le courant. Lorsque le capteur détecte un pic prolongé (objet saisi), le code arrête la fermeture de la pince.  
-[Voir le code Arduino](../../software/arduino/Code_arduino.md)  
+[Voir le code Arduino](../software/arduino/Code_arduino.md)  
 
 Vidéo de la pince : [vidéo de la pince](https://youtu.be/Qs0z032AmsQ)
 

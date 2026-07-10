@@ -105,11 +105,11 @@ Vous trouverez des photos du PCB [ici](../hardware)
 ### - 10/07/2026 18:21, Suivi du développement, Bras robotique
 
 J’ai finalisé le code permettant de calculer la position d’un objet situé devant le bras robotique à partir des distances mesurées par les trois capteurs à ultrasons.
-Ce module réalise la trilatération en utilisant les coordonnées fixes des capteurs et les distances mesurées, puis renvoie la position estimée de l’objet dans le repère du bras. [voir le code](../../software/arduino/Code_arduino.md)  
+Ce module réalise la trilatération en utilisant les coordonnées fixes des capteurs et les distances mesurées, puis renvoie la position estimée de l’objet dans le repère du bras. [voir le code](../software/arduino/Code_arduino.md)  
 
 J’ai finalisé le code de cinématique inverse permettant, à partir de la position détectée d’un objet, de calculer automatiquement les angles nécessaires pour chaque servomoteur.
 Ce module détermine la configuration du bras afin qu’il puisse atteindre et saisir l’objet, en prenant en compte la géométrie du robot et les contraintes mécaniques des articulations.
-Comme pour le code précedent vous pouvez le retrouver [ici](../../software/arduino/Code_arduino.md)  
+Comme pour le code précedent vous pouvez le retrouver [ici](../software/arduino/Code_arduino.md)  
 
 
 

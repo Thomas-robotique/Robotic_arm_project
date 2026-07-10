@@ -499,8 +499,7 @@ void ouvrirPince() {
 }
 ```
 
-# Code Arduino permettant le contrôle du bras robotique et de la pince avec trois encodeurs
-
+# Code Arduino permettant le calcul de la position de l'objet grâce aux trois capteurs ultrasons
 ```cpp
 #include <Servo.h>
 
@@ -678,3 +677,261 @@ else if (&servo == &servo3)
   return 0; // Aucun objet détecté
 }
 ```
+# Code Arduino permettant le calcul des angles de chaque articulation du bras par cinématique inverse
+```cpp
+
+#include <Servo.h>
+
+// --- SERVOS ---
+Servo servo1;
+Servo servo2;
+Servo servo3;
+
+
+// Dimensions du bras 
+const float a = 5;
+const float b = 5;
+const float c = 5;
+
+
+float teta = 0;
+float phi = 0;
+
+
+
+// Différence des coordonnées des centres en cm
+const float A_1_2 = 25.4;
+const float B_1_2 = 0;
+const float A_1_3 = 25.4;
+const float B_1_3 = 14.5;
+
+const float C_1_3 = 630.75;
+
+// --- ULTRASON 1 ---
+#define TRIG1 8
+#define ECHO1 9
+
+#define TRIG2 7
+#define ECHO2 6
+
+#define TRIG2 7
+#define ECHO2 6
+
+
+#define TRIG3 2
+#define ECHO3 10
+
+void setup() {
+  Serial.begin(115200);
+
+  servo1.attach(3);
+  servo2.attach(5);
+  servo3.attach(4);
+
+  pinMode(TRIG1, OUTPUT);
+  pinMode(ECHO1, INPUT);
+
+  pinMode(TRIG2, OUTPUT);
+  pinMode(ECHO2, INPUT);
+
+  pinMode(TRIG3, OUTPUT);
+  pinMode(ECHO3, INPUT);
+
+
+}
+
+void loop() {
+
+   float distance = scan(servo1, 60, 150, TRIG1, ECHO1);
+   delay(1000);
+   float distance1 = scan(servo2, 130, 150, TRIG2, ECHO2);
+    delay(1000);
+  float distance2 = scan(servo3, 10 ,70, TRIG3, ECHO3);
+   delay(1000);
+
+  Serial.print("Distance détectée = ");
+  Serial.println(distance);
+    Serial.print("Distance détectée = ");
+  Serial.println(distance1);
+  Serial.print("Distance détectée = ");
+  Serial.println(distance2);
+
+   float R1= distance;
+   float R2= distance1;
+   float R3= distance2;
+
+
+  float D_1_2 = R1*R1 - R2*R2;          // C_1_2 = 0
+  float D_1_3 = R1*R1 - R3*R3 - C_1_3;  // C_1_3
+
+   float x, y;
+  Calcul_Coordonnees(D_1_2, D_1_3, x, y);
+
+  Serial.print("x = ");
+  Serial.println(x);
+
+  Serial.print("y = ");
+  Serial.println(y);
+
+float d = sqrt(x*x + y*y);
+Calcule_Angles(d,teta,phi);
+   
+  delay(200);
+
+
+
+
+}
+
+// --- MESURE ULTRASON SIMPLE ---
+float mesureDistance(int TRIG, int ECHO) {
+
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long duree = pulseIn(ECHO, HIGH);
+
+  float distance = duree * 0.0343 / 2;
+
+  return distance;
+}
+
+// --- SCAN SERVO ---
+float scan(Servo &servo, int angle_min, int angle_max, int TRIG, int ECHO)
+{
+
+if (&servo == &servo1)
+{
+  for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+    // Zone interdite (capteur d'en face)
+   
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+}
+else if (&servo == &servo2)
+{
+   for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+  
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+
+}
+
+else if (&servo == &servo3)
+{
+   for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+  
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+
+}
+
+  return 0; // Aucun objet détecté
+}
+
+
+
+
+
+void Calcul_Coordonnees(float D_1_2, float D_1_3, float &x, float &y)
+{
+  x = D_1_2 / (2.0 * A_1_2);
+  y = (D_1_3 - 2.0 * A_1_3 * x) / (2.0 * B_1_3);
+}
+
+
+void Calcule_Angles(float d, float &teta_deg, float &phi_deg) {
+  float r = sqrt(d*d + a*a);
+
+  if (r > b + c || r < fabs(b - c)) {
+    Serial.println("ERREUR : hors portee");
+    teta_deg = phi_deg = 0; return;
+  }
+
+  float K     = (d*d + a*a + b*b - c*c) / (2.0f * b);
+  float delta = atan2(a, d);
+  float teta  = asin(K/r) + delta;
+  float psi   = atan2(d - b*sin(teta), -a - b*cos(teta));
+  float phi   = psi - teta;
+
+  // Vérification
+  float ex = b*sin(teta) + c*sin(psi);
+  float ey = a + b*cos(teta) + c*cos(psi);
+  Serial.print("Cible    : x="); Serial.print(d); Serial.print(" y=0  (ey doit=0, ex=d)");
+  Serial.print("Effecteur: x="); Serial.print(ex,3); Serial.print(" y="); Serial.println(ey,3);
+
+  teta_deg = teta * 180.0f / PI;
+  phi_deg  = phi  * 180.0f / PI;
+  Serial.print("teta="); Serial.print(teta_deg,2);
+  Serial.print("  phi="); Serial.println(phi_deg,2);
+}
+
+
+```
+

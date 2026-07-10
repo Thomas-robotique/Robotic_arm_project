@@ -498,3 +498,183 @@ void ouvrirPince() {
   objetSaisi = false;
 }
 ```
+
+# Code Arduino permettant le contrôle du bras robotique et de la pince avec trois encodeurs
+
+```cpp
+#include <Servo.h>
+
+//  SERVOS DE SCAN
+Servo servo1;
+Servo servo2;
+Servo servo3;
+
+
+
+// ULTRASON 1
+#define TRIG1 8
+#define ECHO1 9
+
+// ULTRASON 2
+#define TRIG2 7
+#define ECHO2 6
+
+
+
+// ULTRASON 3
+#define TRIG3 2
+#define ECHO3 10
+
+void setup() {
+  Serial.begin(115200);
+
+  servo1.attach(3);
+  servo2.attach(5);
+  servo3.attach(4);
+
+  pinMode(TRIG1, OUTPUT);
+  pinMode(ECHO1, INPUT);
+
+  pinMode(TRIG2, OUTPUT);
+  pinMode(ECHO2, INPUT);
+
+  pinMode(TRIG3, OUTPUT);
+  pinMode(ECHO3, INPUT);
+
+
+}
+
+void loop() {
+
+   float distance = scan(servo1, 60, 150, TRIG1, ECHO1);
+   delay(1000);
+   float distance1 = scan(servo2, 130, 150, TRIG2, ECHO2);
+    delay(1000);
+  float distance2 = scan(servo3, 10 ,70, TRIG3, ECHO3);
+   delay(1000);
+
+  Serial.print("Distance détectée = ");
+  Serial.println(distance);
+
+  Serial.print("Distance détectée = ");
+  Serial.println(distance1);
+
+  Serial.print("Distance détectée = ");
+  Serial.println(distance2);
+
+
+
+}
+
+//  MESURE ULTRASON SIMPLE 
+float mesureDistance(int TRIG, int ECHO) {
+
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long duree = pulseIn(ECHO, HIGH);
+
+  float distance = duree * 0.0343 / 2;
+
+  return distance;
+}
+
+//  SCAN SERVO 
+float scan(Servo &servo, int angle_min, int angle_max, int TRIG, int ECHO)
+{
+
+if (&servo == &servo1)
+{
+  for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+    // Zone interdite (capteur d'en face)
+   
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+}
+else if (&servo == &servo2)
+{
+   for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+  
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+
+}
+
+else if (&servo == &servo3)
+{
+   for (int angle = angle_min; angle <= angle_max; angle += 5)
+  {
+    servo.write(angle);
+    if( angle== angle_min)
+    {
+      delay(1000);
+    }
+    delay(30);
+
+    float d = mesureDistance(TRIG, ECHO);
+
+    Serial.print("Angle ");
+    Serial.print(angle);
+    Serial.print("° : ");
+    Serial.println(d);
+
+  
+
+    // Objet réel détecté
+    if ( d < 20)
+    {
+      Serial.println("Objet détecté !");
+      return d;
+    }
+  }
+
+}
+
+  return 0; // Aucun objet détecté
+}
+```

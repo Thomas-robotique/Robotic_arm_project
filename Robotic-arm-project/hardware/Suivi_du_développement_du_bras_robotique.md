@@ -1,4 +1,4 @@
-# Suivi du fonctionnement du bras articulé
+# Suivi du developpement du bras articulé
 
 Ce document présente, dans l’ordre chronologique, les différentes étapes d’évolution du bras robotisé.  
 Chaque vidéo illustre une amélioration technique, comme la résolution d’un bug, la correction d’un problème mécanique ou l’ajout d’une nouvelle fonctionnalité.

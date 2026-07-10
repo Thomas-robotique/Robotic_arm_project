@@ -99,7 +99,6 @@ L’objectif est de rendre le circuit plus fiable et plus robuste.
 Vous trouverez des photos du PCB [ici](../hardware)
 
 #### Points d’amélioration futurs :
-- Réaliser une nouvelle armature en impression 3D.
 - Finaliser la trilatération afin d’obtenir les coordonnées d’un objet et automatiser sa prise.
 
 ### - 10/07/2026 18:21, Suivi du développement, Bras robotique
@@ -111,5 +110,6 @@ J’ai finalisé le code de cinématique inverse permettant, à partir de la pos
 Ce module détermine la configuration du bras afin qu’il puisse atteindre et saisir l’objet, en prenant en compte la géométrie du robot et les contraintes mécaniques des articulations.
 Comme pour le code précedent vous pouvez le retrouver [ici](../software/arduino/Code_arduino.md)  
 
-
+#### Points d’amélioration futurs :
+– Tester ensemble les deux derniers modules (trilatération et cinématique inverse) afin de rendre la saisie d’objet la plus fiable possible.
 

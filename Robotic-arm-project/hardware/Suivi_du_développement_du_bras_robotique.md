@@ -99,7 +99,7 @@ L’objectif est de rendre le circuit plus fiable et plus robuste.
 Vous trouverez des photos du PCB [ici](../hardware)
 Voici une comparaison avant après :
 avant                                            
-<img width="1000" height="1080" alt="Photo_système_électrique_sans_pcb" src="https://github.com/user-attachments/assets/5444e699-9615-4d06-81b3-8bacafab156b" />
+<img width="1000" alt="Photo_système_électrique_sans_pcb" src="https://github.com/user-attachments/assets/5444e699-9615-4d06-81b3-8bacafab156b" />
 
 après
 <img width="1920" height="1080" alt="Photo_système_électrique_avec_pcb" src="https://github.com/user-attachments/assets/bb61eaa4-de88-4d4b-8259-e8cc33c0919f" />

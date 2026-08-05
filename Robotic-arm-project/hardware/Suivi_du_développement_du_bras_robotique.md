@@ -121,3 +121,9 @@ Comme pour le code précedent vous pouvez le retrouver [ici](../software/arduino
 #### Points d’amélioration futurs :
 – Tester ensemble les deux derniers modules (trilatération et cinématique inverse) afin de rendre la saisie d’objet la plus fiable possible.
 
+### - 05/08/2026 10:57, Suivi du développement, Bras robotique
+
+La méthode par trilatération telle que je l’avais effectuée ne permettait pas une localisation précise de l’objet.
+En effet, chacun des trois capteurs détectait un point différent de l’objet, ce qui empêchait le bon calcul de sa position.
+
+À la place, j’ai décidé d’utiliser un seul capteur placé en face du robot afin que, grâce à son scan, il calcule la position de l’objet. L’explication détaillée de ce fonctionnement se trouve ici.

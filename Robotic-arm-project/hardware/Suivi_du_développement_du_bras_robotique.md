@@ -126,4 +126,4 @@ Comme pour le code précedent vous pouvez le retrouver [ici](../software/arduino
 La méthode par trilatération telle que je l’avais effectuée ne permettait pas une localisation précise de l’objet.
 En effet, chacun des trois capteurs détectait un point différent de l’objet, ce qui empêchait le bon calcul de sa position.
 
-À la place, j’ai décidé d’utiliser un seul capteur placé en face du robot afin que, grâce à son scan, il calcule la position de l’objet. L’explication détaillée de ce fonctionnement se trouve ici.
+À la place, j’ai décidé d’utiliser un seul capteur placé en face du robot afin que, grâce à son scan, il calcule la position de l’objet. L’explication détaillée de ce fonctionnement se trouve [ici](../hardware/localisation_avec_1_capteur.pdf)

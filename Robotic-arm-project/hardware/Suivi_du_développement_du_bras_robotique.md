@@ -129,4 +129,5 @@ La méthode par trilatération telle que je l’avais effectuée ne permettait p
 En effet, chacun des trois capteurs détectait un point différent de l’objet, ce qui empêchait le bon calcul de sa position.
 
 À la place, j’ai décidé d’utiliser un seul capteur placé en face du robot afin que, grâce à son scan, il calcule la position de l’objet. L’explication détaillée de ce fonctionnement se trouve [ici](../hardware/localisation_avec_1_capteur.pdf)
-Voici une vidéo de la localisation d'un objet par le bras robotique, [vidéo](https://youtu.be/Ww5m6PL8Tnw)
+
+Voici une vidéo de la localisation d'un objet par le bras robotique: [vidéo](https://youtu.be/Ww5m6PL8Tnw)
